@@ -9,6 +9,9 @@ const cors = require('cors')
 const app = express()
 dbcon()
 
+const allowedOrigins = [
+  "https://react-assignment-3-student-manageme.vercel.app",
+];
 
 app.use(
   cors({
@@ -17,7 +20,7 @@ app.use(
       if (!origin) return callback(null, true);
 
      
-      if (origin.startsWith("http://localhost:")) {
+      if (allowedOrigins.includes(origin) || origin.startsWith("http://localhost:")) {
         return callback(null, true);
       }
 
